@@ -1,0 +1,20 @@
+{
+  "funciones": [  
+    "<b>1. agregarProducto(producto)</b>",
+    " → Acceder con Postman: POST http://localhost:3000/api/productos/ ",  
+    " → Acceder con app web: <a href=\"http://localhost:3001/productos/nuevo/\">http://localhost:3001/productos/nuevo</a>",   
+    "<b>2. registrarMovimiento(movimiento)</b>",
+    " → Acceder con Postman: POST http://localhost:3000/api/movimientos/",
+    " → Acceder con app web: <a href=\"http://localhost:3001/movimientos/nuevo\">http://localhost:3001/movimientos/nuevo</a>",
+    "<b>3. consultarStock(codigo)</b>",
+    " → Acceder con Postman: GET http://localhost:3000/api/productos/:id",
+    " → Acceder con app web: http://localhost:3001/productos/:id. (<a href=\"http://localhost:3001/productos\">http://localhost:3001/productos/</a> Click en DETALLE)",
+    "<b>4. productosStockBajo()</b>",
+    " → Acceder con Postman: GET http://localhost:3000/api/productos/stock-bajo",   
+    " → Acceder con app web: <a href=\"http://localhost:3001/productos/stock-bajo\">http://localhost:3001/productos/stock-bajo</a>",
+    "<b>5. reporteMovimientos(fechaInicio, fechaFin)</b>",
+    " → Acceder con Postman: GET http://localhost:3000/api/movimientos/reporte?startDate=2025-07-01&endDate=2025-07-11", 
+    " → Acceder con app web: <a href=\"http://localhost:3001/movimientos/reporte\">http://localhost:3001/movimientos/reporte</a>"
+  ]
+
+}

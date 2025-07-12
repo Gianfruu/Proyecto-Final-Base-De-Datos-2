@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuevo Movimiento</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+
+  <div class="container">
+    <h1>Nuevo Movimiento</h1>
+    
+        <% if (error) { %>
+          <div class="error-message">
+            ⚠️ <%= error %>
+          </div>
+        <% } %>
+
+        <form class="form-producto" method="POST" action="/movimientos">
+
+          <div class="form-row">
+            <label for="productoId">Producto:</label>
+            <select name="productoId" id="productoId" required>
+              <% productos.forEach(p => { %>                
+                <option value="<%= p._id %>"><%= p.nombre %> (<%= p.codigo %>)</option>
+              <% }) %>
+            </select>
+          </div> 
+
+          <div class="form-row">
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" name="tipo" required>
+              <option value="">-- Seleccionar --</option>
+              <option value="entrada">Entrada</option>
+              <option value="salida">Salida</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" name="cantidad" required min="0" step="1" oninput="validarEntero(this)">
+          </div>
+
+          <div class="form-row">
+            <label for="motivo">Motivo:</label>
+            <input type="text" id="motivo" name="motivo" required placeholder="Ej: Compra de saldos">
+          </div>
+
+          <div class="form-row">
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" required placeholder="Ej: admin">
+          </div>
+                    
+          <button type="submit">Guardar Movimientos</button>
+        </form>
+  </div>
+
+  <script>
+  function validarEntero(input) {
+    input.value = input.value.replace(/[^\d]/g, '');
+  }
+</script>
+</body>
+</html>

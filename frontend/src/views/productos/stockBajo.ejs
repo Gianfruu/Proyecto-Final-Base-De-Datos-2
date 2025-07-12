@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Stock bajo</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+
+  <div class="container">
+
+    <h1>Productos con Stock Bajo</h1>
+    <% if (productos.length === 0) { %>
+      <p>Todos los productos están dentro de los niveles de stock adecuados.</p>
+    <% } else { %>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Código</th>
+            <th>Stock Actual</th>
+            <th>Stock Mínimo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% productos.forEach(p => { %>
+            <tr>
+              <td><%= p.nombre %></td>
+              <td><%= p.codigo %></td>
+              <td><%= p.stockActual %></td>
+              <td><%= p.stockMinimo %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+
+  </div>
+
+</body>
+</html>

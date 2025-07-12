@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Proveedores</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  <div class="container">
+    <h1>Proveedores</h1>
+    
+
+    <form method="GET" action="/proveedores" style="margin-bottom: 30px; display: flex; gap: 10px;">
+      <input 
+        type="text" 
+        name="keyword" 
+        class="search-input"
+        placeholder="Buscar por nombre o código" 
+        value="<%= keyword %>" 
+      />
+
+      <select name="limit">
+        <option value="5" <%= limit == 5 ? 'selected' : '' %>>5</option>
+        <option value="10" <%= limit == 10 ? 'selected' : '' %>>10</option>
+        <option value="20" <%= limit == 20 ? 'selected' : '' %>>20</option>
+        <option value="50" <%= limit == 50 ? 'selected' : '' %>>50</option>
+      </select>
+
+      <button type="submit">🔍 Buscar</button>
+    </form>
+
+    <%
+      function buildSortLink(field) {
+        let newOrder = 'asc';
+        if (sort === field && order === 'asc') {
+          newOrder = 'desc';
+        }
+
+        const params = new URLSearchParams({
+          keyword,
+          page: 1,
+          sort: field,
+          order: newOrder,
+          limit
+        });
+
+        return `?${params.toString()}`;
+      }
+    %>
+
+    <table class="product-table">
+      <thead>
+        <tr>
+
+          <th class="col-nom-prov">
+            <a class="sortable" href="<%= buildSortLink('nombre') %>">
+              Proveedor
+                <% if (sort === 'nombre') { %>
+                  <%= order === 'asc' ? '▲' : '▼' %>
+                <% } %>
+            </a>
+          </th>
+          
+          <th class="col-contacto">
+            <a class="sortable" href="<%= buildSortLink('contacto') %>">
+              Contacto
+                <% if (sort === 'contacto') { %>
+                  <%= order === 'asc' ? '▲' : '▼' %>
+                <% } %>
+            </a>
+          </th>
+
+          <th class="col-telefono">
+            <a class="sortable" href="<%= buildSortLink('telefono') %>">
+              Teléfono
+                <% if (sort === 'telefono') { %>
+                <%= order === 'asc' ? '▲' : '▼' %>
+                <% } %>
+            </a>
+          </th>
+
+
+          <th class="detalle-header">Detalle</th>
+          <th class="detalle-header">Acciones</th>
+          <th class="detalle-header">Actualizar</th> 
+
+        </tr>
+      </thead>
+      <tbody>
+        
+        <% proveedores.forEach(p => { %>          
+          <tr>            
+            <td class="col-nom-prov"><%= p.nombre %></td>
+            <td lass="col-contacto"><%= p.contacto %></td>
+            <td class="col-telefono"><%= p.telefono %></td>           
+
+            <td><a href="/proveedores/<%= p._id %>?page=<%= meta.page %>&limit=<%= limit %>&keyword=<%= keyword %>&sort=<%= sort %>&order=<%= order %>" class="detail-button">Detalle</a></td>
+
+            <td>              
+              <form 
+                method="POST" 
+                action="/proveedores/<%= p._id %>?_method=DELETE&page=<%= meta.page %>&limit=<%= limit %>&keyword=<%= keyword %>&sort=<%= sort %>&order=<%= order %>" 
+                style="display:inline;"
+              >
+                <button 
+                  type="submit" 
+                  class="delete-button" 
+                  onclick="return confirm('¿Estás seguro de que deseas eliminar este proveedor?');"
+                >
+                  Eliminar
+                </button>
+              </form>
+            </td>
+
+
+             <td>
+              <a href="/proveedores/<%= p._id %>/editar" class="update-button">🖋️ Editar</a>  
+             </td>
+
+
+
+          </tr> 
+        <% }) %>        
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <% if (meta.hasPrev) { %>
+        <a href="?page=<%= meta.page - 1 %>&keyword=<%= keyword %>&sort=<%= sort %>&order=<%= order %>&limit=<%= limit %>">← Anterior</a>
+      <% } %>
+
+      <span>Página <%= meta.page %> de <%= meta.pages %></span>
+
+      <% if (meta.hasNext) { %>
+        <a href="?page=<%= meta.page + 1 %>&keyword=<%= keyword %>&sort=<%= sort %>&order=<%= order %>&limit=<%= limit %>">Siguiente →</a>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

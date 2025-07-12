@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte por fechas</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container">
+
+    <h1>Reporte de movimientos</h1>
+
+    <!-- Filtro por fecha -->
+    <form class="form-fecha" method="GET" action="/movimientos/reporte" class="form-fechas">
+      <div class="form-row">
+        <label for="startDate">Desde:</label>
+        <input type="date" id="startDate" name="startDate" value="<%= startDate || '' %>" required>
+      </div>
+      
+      <div class="form-row">
+        <label for="endDate">Hasta:</label>
+        <input type="date" id="endDate" name="endDate" value="<%= endDate || '' %>" required>
+      </div>
+
+      <button type="submit">🔍 Filtrar</button>
+    </form>
+
+      
+
+    <% if (movimientos && movimientos.length > 0) { %>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Producto</th>
+            <th>Tipo</th>
+            <th>Cantidad</th>
+            <th>Motivo</th>
+            <th>Usuario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% movimientos.forEach(m => { %>
+            <tr>
+              
+              <td><%= new Date(m.fecha).toLocaleDateString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }) %></td>
+              <td><%= m.productoId?.nombre || 'Desconocido' %> (<%= m.productoId?.codigo || '' %>)</td>
+              <td><%= m.tipo %></td>
+              <td><%= m.cantidad %></td>
+              <td><%= m.motivo %></td>
+              <td><%= m.usuario %></td>            
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else if (startDate && endDate) { %>
+      <p>No se encontraron movimientos entre esas fechas</p>
+    <% } else { %>
+      <p>Seleccione las fechas
+ </p>
+    <% } %>
+
+
+  </div>
+</body>
+</html>
