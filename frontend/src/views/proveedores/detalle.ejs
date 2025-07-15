@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle del Proveedor</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container">
+    <h1>Detalle del Proveedor</h1>
+    <a href="/proveedores?page=<%= page %>&limit=<%= limit %>&keyword=<%= keyword %>&sort=<%= sort %>&order=<%= order %>" class="back-link">← Volver a proveedores</a>
+
+    <ul>
+      <li><strong>ID:</strong> <%= proveedores._id %></li>
+      <li><strong>Proveedor:</strong> <%= proveedores.nombre %></li>      
+      <li><strong>Contacto:</strong> <%= proveedores.contacto %></li>
+      <li><strong>Teléfono:</strong> <%= proveedores.telefono %></li>
+      <li><strong>E-mail:</strong> <%= proveedores.email %></li>      
+      <li><strong>Productos:</strong> <%= proveedores.productosOfrecidos %></li>      
+    </ul>
+  </div>
+</body>
+</html>

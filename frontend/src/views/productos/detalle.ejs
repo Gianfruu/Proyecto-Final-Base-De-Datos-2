@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle del Producto</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container">
+    <h1>Detalle del Producto</h1>
+    <a href="/productos?page=<%= page %>&limit=<%= limit %>&keyword=<%= keyword %>&sort=<%= sort %>&order=<%= order %>" class="back-link">← Volver a productos</a>
+
+    <ul>
+      <li><strong>Código:</strong> <%= producto.codigo %></li>
+      <li><strong>ID:</strong> <%= producto._id %></li>
+      <li><strong>Nombre:</strong> <%= producto.nombre %></li>      
+      <li><strong>Categoría:</strong> <%= producto.categoria %></li>
+      <li><strong>Precio:</strong> $<%= producto.precio.toFixed(2) %></li>
+      <li><strong>Stock actual:</strong> <%= producto.stockActual %></li>
+      <li><strong>Stock mínimo:</strong> <%= producto.stockMinimo %></li>
+    </ul>
+  </div>
+</body>
+</html>

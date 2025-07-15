@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Postman</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <%- include('../partials/navbar') %>
+
+  <div class="container">
+    <h1>Modelos Json para Postman</h1>
+      
+    <pre><code><strong>POST Producto</strong><br><%= JSON.stringify(ejemplos.producto, null, 2) %></code></pre>
+
+    <pre><code><strong>POST Proveedor</strong><br><%= JSON.stringify(ejemplos.proveedor, null, 2) %></code></pre>
+
+    <pre><code><strong>POST Movimiento</strong><br><%= JSON.stringify(ejemplos.movimiento, null, 2) %></code></pre>    
+
+  </div>
+
+</body>
+</html>

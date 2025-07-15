@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Proveedor</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+
+  <div class="container">
+    
+    <h1>Editar Proveedor</h1>
+
+    <form method="POST" action="/proveedores/<%= proveedor._id %>?_method=PUT" class="form-producto">
+  
+      <div class="form-row">
+        <label for="nombre">Proveedor:</label>
+        <input type="text" id="nombre" name="nombre" value="<%= proveedor.nombre %>" required>
+      </div>
+      
+      <div class="form-row">
+        <label for="contacto">Contacto:</label>
+        <input type="text" id="contacto" name="contacto" value="<%= proveedor.contacto %>" required>
+      </div>
+
+      <div class="form-row">
+        <label for="telefono">Telefono:</label>
+        <input type="text" id="telefono" name="telefono" value="<%= proveedor.telefono %>">
+      </div>
+
+      <div class="form-row">
+        <label for="email">E-mail:</label>
+        <input type="text" id="email" name="email" value="<%= proveedor.email %>">
+      </div>         
+
+      <button type="submit">Guardar cambios</button>
+    </form>
+
+  </div>
+</body>
+</html>  
