@@ -13,7 +13,7 @@
 ---
 ### 2️⃣ Descripción:
 - Se trata de un proyecto enfocado en el diseño de una base de datos en MongoDB y en la construcción de una API RESTful para su empleo.
-- Primariamente, se accede Postman para verificar el correcto funcionamiento del sistema y para emplear la totalidad de los servicios que provee este Sistema de Inventario de Tienda.
+- Primariamente, se accede mediante Postman para verificar el correcto funcionamiento del sistema y para emplear la totalidad de los servicios que provee este Sistema de Inventario de Tienda.
 - Secundariamente, se ofrece una sencilla app web, al solo efecto de visualizar facil y rápidamente algunas de las posibilidades que brinda la API del proyecto.
 - Para cumplir con la consigna, se crea una base de datos en mongoDB con las colecciones provistas: productos, movimientos, proveedores.
 - La base de datos en particular, es accesible en <pre> ``` mongodb://localhost:27017/TiendaGrupo19 ``` </pre>
